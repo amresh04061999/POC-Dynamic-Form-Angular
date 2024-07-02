@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormComponent } from './components/form/form.component';
+import { HeaderComponent } from './core/header/header.component';
+import { RightAsideComponent } from './components/right-aside/right-aside.component';
+import { LeftAsideComponent } from './components/left-aside/left-aside.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormComponent],
+  imports: [RouterOutlet,HeaderComponent,DashboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
