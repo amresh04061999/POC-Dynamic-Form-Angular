@@ -1,32 +1,25 @@
-<cdk-accordion class="example-accordion">
+<div class="left-aside">
+  <cdk-accordion class="example-accordion">
     @for (item of items; track item; let index = $index) {
-      <cdk-accordion-item
-        #accordionItem="cdkAccordionItem"
-        class="example-accordion-item"
-        role="button"
-        tabindex="0"
-        [attr.id]="'accordion-header-' + index"
-        [attr.aria-expanded]="accordionItem.expanded"
-        [attr.aria-controls]="'accordion-body-' + index">
-        <div class="example-accordion-item-header fw-bold " (click)="accordionItem.toggle()">
-          {{ item }}
-          <span class="example-accordion-item-description">
-            <div [ngClass]="{'icon-up': accordionItem.expanded, 'icon-down': !accordionItem.expanded}"></div>
-          </span>
+    <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+      [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index">
+      <div class="example-accordion-item-header fw-bold d-flex justify-content-between align-items-center  p-3 d-"
+        (click)="accordionItem.toggle()" [class.active]="accordionItem.expanded">
+        <span>{{item.title}}</span>
+        <span class="example-accordion-item-description d-flex align-items-center">
+          <div [ngClass]="accordionItem.expanded ?'icon-up':'icon-down'"></div>
+        </span>
+      </div>
+      <div class="example-accordion-item-body p-2" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+        <div class="d-flex flex-column">
+          <button class="btn btn-primary text-white mt-1">Text Field</button>
+          <button class="btn btn-primary text-white mt-1">Text Area</button>
+          <button class="btn btn-primary text-white mt-1">Number</button>
         </div>
-        <div
-          class="example-accordion-item-body"
-          role="region"
-          [style.display]="accordionItem.expanded ? '' : 'none'"
-          [attr.id]="'accordion-body-' + index"
-          [attr.aria-labelledby]="'accordion-header-' + index">
-           <div class="d-flex flex-column">
-            <button class="btn btn-primary text-white mt-1">Text Field</button>
-            <button class="btn btn-primary text-white mt-1">Text Area</button>
-            <button class="btn btn-primary text-white mt-1">Number</button>
-           </div>
-        </div>
-      </cdk-accordion-item>
+      </div>
+    </cdk-accordion-item>
     }
   </cdk-accordion>
-  
+</div>
