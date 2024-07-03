@@ -8,20 +8,17 @@ interface Field {
 @Component({
   selector: 'app-builder',
   standalone: true,
-  imports: [CommonModule, DragDropModule],
+  imports: [ DragDropModule],
   templateUrl: './builder.component.html',
   styleUrl: './builder.component.scss'
 })
 export class BuilderComponent {
-  availableFields: Field[] = [
-    { type: 'input', label: 'Text Input' },
-    { type: 'textarea', label: 'Text Area' },
-    // Add more field types as needed...
-  ];
-
-  formFields: Field[] = [];
-
-  drop(event: CdkDragDrop<Field[]>) {
+  public availableItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+ public  droppedItems = [];
+constructor(){
+  
+}
+  public drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -32,12 +29,5 @@ export class BuilderComponent {
         event.currentIndex
       );
     }
-  }
-
-  generateSchema() {
-    const schema = this.formFields.map((field: any) => {
-      return { type: field.type, label: field.label };
-    });
-    console.log(JSON.stringify(schema));
   }
 }

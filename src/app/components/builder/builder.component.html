@@ -1,14 +1,28 @@
-<div class="h-100 border border-1  rounded-2 p-1 ">
-    <h3>Available Fields</h3>
-    <div cdkDropList [cdkDropListData]="availableFields" class="field-list" (cdkDropListDropped)="drop($event)">
-        <div *ngFor="let field of availableFields" cdkDrag>{{ field.label }}</div>
+<div class="h-100 border border-1 rounded-2 p-1">
+  <div class="container">
+    <div
+      class="pick-section"
+      cdkDropList
+      [cdkDropListData]="availableItems"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for( item of availableItems; track item ){
+      <div class="item" cdkDrag>
+        {{ item }}
+      </div>
+      }
     </div>
-
-    <h3>Form Builder</h3>
-    <div class="mt-5 border" cdkDropList [cdkDropListData]="formFields" class="form-list"
-        (cdkDropListDropped)="drop($event)">
-        <div *ngFor="let field of formFields" cdkDrag>{{ field.label }}</div>
+    <div
+      class="drop-section"
+      cdkDropList
+      [cdkDropListData]="droppedItems"
+      (cdkDropListDropped)="drop($event)"
+    >
+      @for( item of droppedItems; track item ){
+      <div class="item" cdkDrag>
+        {{ item }}
+      </div>
+      }
     </div>
-
-    <button (click)="generateSchema()">Generate JSON Schema</button>
+  </div>
 </div>
